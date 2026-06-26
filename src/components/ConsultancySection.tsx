@@ -1,5 +1,5 @@
 // Consultancy section — pulled from the service with id "consultancy"
-import { siteConfig } from "../../../site.config";
+import { siteConfig } from "../../site.config";
 
 // Icons for consultancy items (in order matching details array)
 const itemIcons = [

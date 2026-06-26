@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState, useCallback } from "react";
-import { siteConfig } from "../../../site.config";
+import { siteConfig } from "../../site.config";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);

@@ -1,4 +1,4 @@
-import { siteConfig } from "../../../site.config";
+import { siteConfig } from "../../site.config";
 import ServiceCard from "./ServiceCard";
 
 export default function ServicesSection() {

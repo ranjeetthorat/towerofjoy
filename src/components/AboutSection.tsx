@@ -1,4 +1,4 @@
-import { siteConfig } from "../../../site.config";
+import { siteConfig } from "../../site.config";
 
 const stats = [
   { value: "4+", label: "Service verticals" },
