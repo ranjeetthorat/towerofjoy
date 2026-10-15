@@ -58,9 +58,25 @@ export default function Footer() {
 
         {/* Bottom bar */}
         <div className="footer__bottom">
-          <p className="footer__copy">
-            &copy; {currentYear} {siteConfig.brandName}. All rights reserved.
-          </p>
+          <div className="footer__meta">
+            <p className="footer__copy">
+              &copy; {currentYear} {siteConfig.brandName}. All rights reserved.
+            </p>
+            <p
+              className="footer__build-info"
+              title={
+                siteConfig.build.buildTime
+                  ? `Built: ${siteConfig.build.buildTime}`
+                  : undefined
+              }
+            >
+              <span className="footer__build-badge">v{siteConfig.build.version}</span>
+              <span className="footer__build-sep">•</span>
+              <span>Build #{siteConfig.build.buildNumber}</span>
+              <span className="footer__build-sep">•</span>
+              <span className="footer__commit-sha">{siteConfig.build.commitSha}</span>
+            </p>
+          </div>
           <div style={{ display: "flex", gap: "var(--space-4)" }}>
             {siteConfig.socials.github && (
               <a

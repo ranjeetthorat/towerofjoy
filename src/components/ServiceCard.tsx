@@ -57,7 +57,7 @@ export default function ServiceCard({
 
   return (
     <article
-      className={`card reveal`}
+      className={`card reveal ${delayClass}`.trim()}
       id={id}
       aria-labelledby={`service-title-${id}`}
       tabIndex={0}

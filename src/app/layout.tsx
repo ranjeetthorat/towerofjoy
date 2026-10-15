@@ -10,21 +10,23 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(siteConfig.domain),
   title: {
     default: siteConfig.brandName,
     template: `%s | ${siteConfig.brandName}`,
   },
   description: siteConfig.description,
   keywords: [
+    "tiny compute",
+    "compute services",
+    "cloud infrastructure",
     "managed services",
-    "cloud hosting",
-    "CDN",
-    "database management",
-    "trading strategies",
-    "Indian stock market",
     "algorithmic trading",
-    "Telegram bot",
+    "Indian stock market",
+    "NSE",
+    "BSE",
     "automation",
+    "Telegram bot",
     "consultancy",
     "DevOps",
     siteConfig.brandName,

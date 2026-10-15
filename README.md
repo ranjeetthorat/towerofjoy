@@ -1,6 +1,6 @@
-# Lint Lab – Website
+# Tiny Compute – Website
 
-A professional Next.js 16 / TypeScript website for **Lint Lab**, built for Vercel deployment.
+A high-performance Next.js 16 / TypeScript website for **Tiny Compute** (`https://www.tinycompute.site`), built for automated versioning and seamless Vercel deployment.
 
 ---
 
@@ -8,10 +8,11 @@ A professional Next.js 16 / TypeScript website for **Lint Lab**, built for Verce
 
 ```
 .
-├── site.config.ts           ← ✅ ALL site content & brand config lives here
+├── next.config.ts           ← ✅ Dynamic build & commit tracking (Git SHA, build #)
+├── site.config.ts           ← ✅ Central site content & brand config (reads env vars)
 ├── src/
 │   ├── app/
-│   │   ├── layout.tsx       ← Root layout + SEO metadata
+│   │   ├── layout.tsx       ← Root layout + SEO metadata & metadataBase
 │   │   ├── page.tsx         ← Main page (composes all sections)
 │   │   ├── globals.css      ← Full design system (CSS custom properties)
 │   │   └── api/
@@ -25,10 +26,10 @@ A professional Next.js 16 / TypeScript website for **Lint Lab**, built for Verce
 │       ├── AboutSection.tsx
 │       ├── ConsultancySection.tsx
 │       ├── ContactSection.tsx
-│       ├── Footer.tsx
+│       ├── Footer.tsx       ← Displays build #, version badge & commit hash
 │       └── ScrollReveal.tsx
 ├── vercel.json
-└── .env.local.example
+└── .env.local.example       ← Environment variable documentation
 ```
 
 ---
@@ -37,72 +38,50 @@ A professional Next.js 16 / TypeScript website for **Lint Lab**, built for Verce
 
 ```bash
 npm install
-cp .env.local.example .env.local   # fill in your values
+cp .env.local.example .env.local   # optional: customize brand or domain
 npm run dev                         # http://localhost:3000
 ```
 
 ---
 
-## Customisation
+## Brand & Domain Configuration
 
-Open **`site.config.ts`** and update:
+Brand and domain names can be swapped via environment variables without touching any source code:
 
-| Field | What it controls |
-|---|---|
-| `brandName` | Logo text, page title, footer, meta tags |
-| `tagline` | Footer and hero sub-text |
-| `description` | Meta description, hero paragraph |
-| `contact` | Email, phone, location in the Contact section |
-| `socials` | Links shown in the footer |
-| `navLinks` | Top navigation items |
-| `services[]` | Service cards (title, icon, summary, details bullet points) |
-| `about` | The "About" section headline and body copy |
-| `meta` | OG image path, site name, Twitter handle |
+| Environment Variable | Default Value | Description |
+|---|---|---|
+| `NEXT_PUBLIC_BRAND_NAME` | `"Tiny Compute"` | Site brand name across navigation, footer, hero, and SEO |
+| `NEXT_PUBLIC_SITE_URL` | `"https://www.tinycompute.site"` | Primary site URL (canonical & metadataBase) |
+| `NEXT_PUBLIC_TAGLINE` | `"Lean infrastructure and algorithmic systems..."` | Tagline in hero and footer |
+| `NEXT_PUBLIC_DESCRIPTION` | `"Tiny Compute delivers lean managed infrastructure..."` | Meta description and hero copy |
+| `NEXT_PUBLIC_CONTACT_EMAIL` | `"hello@tinycompute.site"` | Public contact email address |
+| `NEXT_PUBLIC_CONTACT_PHONE` | `"+91 00000 00000"` | Contact phone number |
+| `NEXT_PUBLIC_CONTACT_LOCATION` | `"India"` | Location displayed in contact section |
+| `NEXT_PUBLIC_GITHUB_URL` | `"https://github.com/tinycompute"` | GitHub profile link |
+| `NEXT_PUBLIC_LINKEDIN_URL` | `"https://linkedin.com/company/tinycompute"` | LinkedIn page link |
+| `NEXT_PUBLIC_TWITTER_HANDLE`| `"@tinycompute"` | Twitter/X handle for cards |
+| `NEXT_PUBLIC_TWITTER_URL` | `"https://twitter.com/tinycompute"` | Twitter/X profile link |
+| `NEXT_PUBLIC_TELEGRAM_URL` | `"https://t.me/tinycompute"` | Telegram link |
 
 ---
 
-## Adding/removing services
+## Automated Build & Version Tracking
 
-Each service in `services[]` becomes a card. The supported `icon` values are:
+Every build automatically resolves and embeds version information into the site footer:
+- **Application Version**: `v0.1.0` (from `package.json`)
+- **Build Number**: Monotonically incrementing commit count (`git rev-list --count HEAD` or `BUILD_NUMBER`)
+- **Commit SHA**: Short git hash (`git rev-parse --short HEAD` or `VERCEL_GIT_COMMIT_SHA`)
 
-- `"ServerIcon"` – managed infrastructure
-- `"ChartIcon"` – trading/finance
-- `"BotIcon"` – automation/bots
-- `"ConsultIcon"` – consultancy / chat
-
-To add a new icon, open `ServiceCard.tsx` and add an SVG to the `icons` map.
+This enables instant verification that your latest commit has been built and deployed on the live site.
 
 ---
 
 ## Deploying to Vercel
 
-1. Push to a GitHub / GitLab / Bitbucket repo.
-2. Import the repo in the [Vercel dashboard](https://vercel.com/new).
-3. Add environment variables in **Settings → Environment Variables**:
+1. Push to your Git repository.
+2. Import the project in the [Vercel Dashboard](https://vercel.com/new).
+3. (Optional) Set custom environment variables in **Settings → Environment Variables** if you want to override the default domain or brand.
+4. Set email credentials:
    - `CONTACT_TO_EMAIL`
-   - `RESEND_API_KEY` (or equivalent for your email provider)
-4. Click **Deploy**.
-
-Vercel automatically detects Next.js — no extra configuration needed beyond `vercel.json`.
-
----
-
-## Wiring the contact form to email
-
-Edit `src/app/api/contact/route.ts`. A Resend example is already commented in. Install the SDK:
-
-```bash
-npm install resend
-```
-
-Then uncomment the Resend block and set `RESEND_API_KEY` in your Vercel environment variables.
-
----
-
-## Design decisions
-
-- **Dark theme only** – `--color-bg: #0d0f14` as canonical background.
-- **CSS custom properties** – all colours, spacing, and typography are tokens, so rebranding is a single-file change.
-- **No Tailwind** – pure vanilla CSS for maximum clarity and zero purge complexity.
-- **Keyboard accessible** – focus-visible outlines, skip-to-main link, ARIA labels on all interactive elements, Escape closes mobile menu.
-- **Scroll reveal** – `IntersectionObserver` adds `.visible` to `.reveal` elements; no heavy animation libraries.
+   - `RESEND_API_KEY`
+5. Click **Deploy**.

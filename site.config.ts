@@ -9,28 +9,36 @@
 
 export const siteConfig = {
   /** Brand / business name shown across the entire site */
-  brandName: "Lint Lab",
+  brandName: process.env.NEXT_PUBLIC_BRAND_NAME || "Tiny Compute",
+
+  /** Primary website domain / URL */
+  domain: process.env.NEXT_PUBLIC_SITE_URL || "https://www.tinycompute.site",
 
   /** Short tagline shown in the hero section */
-  tagline: "Precision-engineered solutions for modern businesses.",
+  tagline:
+    process.env.NEXT_PUBLIC_TAGLINE ||
+    "Lean infrastructure and algorithmic systems for modern business.",
 
   /** Longer description for meta tags and hero sub-text */
   description:
-    "Lint Lab delivers managed infrastructure, custom trading strategies for Indian markets, intelligent automation, and strategic consultancy — all crafted with clarity and precision.",
+    process.env.NEXT_PUBLIC_DESCRIPTION ||
+    "Tiny Compute delivers lean managed infrastructure, custom trading strategies for Indian markets, high-throughput automation, and strategic consultancy — crafted with minimal overhead and maximum precision.",
 
   /** Contact details */
   contact: {
-    email: "hello@lintlab.dev",
-    phone: "+91 00000 00000", // replace with real number
-    location: "India",
+    email: process.env.NEXT_PUBLIC_CONTACT_EMAIL || "hello@tinycompute.site",
+    phone: process.env.NEXT_PUBLIC_CONTACT_PHONE || "+91 00000 00000",
+    location: process.env.NEXT_PUBLIC_CONTACT_LOCATION || "India",
   },
 
   /** Social / professional links */
   socials: {
-    github: "https://github.com/lintlab",
-    linkedin: "https://linkedin.com/in/lintlab",
-    twitter: "https://twitter.com/lintlab",
-    telegram: "https://t.me/lintlab",
+    github: process.env.NEXT_PUBLIC_GITHUB_URL || "https://github.com/tinycompute",
+    linkedin:
+      process.env.NEXT_PUBLIC_LINKEDIN_URL || "https://linkedin.com/company/tinycompute",
+    twitter:
+      process.env.NEXT_PUBLIC_TWITTER_URL || "https://twitter.com/tinycompute",
+    telegram: process.env.NEXT_PUBLIC_TELEGRAM_URL || "https://t.me/tinycompute",
   },
 
   /** Navigation links */
@@ -117,20 +125,28 @@ export const siteConfig = {
 
   /** ─── About / founder blurb ─── */
   about: {
-    headline: "Built on precision. Driven by results.",
-    body: `Lint Lab is an independent consultancy and engineering studio.
-We specialise in the intersection of cloud infrastructure, financial technology,
-and intelligent automation — delivering solutions that are robust, maintainable,
-and designed to scale.
+    headline: "Built for efficiency. Powered by compute.",
+    body: `Tiny Compute is an independent systems engineering studio and consultancy.
+We specialise in the intersection of lean cloud infrastructure, high-throughput algorithmic trading pipelines,
+and intelligent automation — delivering robust, high-performance systems that eliminate bloat,
+remain maintainable, and scale effortlessly.
 
-Every engagement is treated as a long-term partnership. We keep things lean,
+Every engagement is treated as a long-term engineering partnership. We keep architectures lean,
 well-documented, and free of unnecessary complexity.`,
+  },
+
+  /** ─── Build / Version Metadata ─── */
+  build: {
+    version: process.env.NEXT_PUBLIC_APP_VERSION || "0.1.0",
+    buildNumber: process.env.NEXT_PUBLIC_BUILD_NUMBER || "1",
+    commitSha: process.env.NEXT_PUBLIC_COMMIT_SHA || "dev",
+    buildTime: process.env.NEXT_PUBLIC_BUILD_TIME || "",
   },
 
   /** ─── Meta / SEO ─── */
   meta: {
-    siteName: "Lint Lab",
-    twitterHandle: "@lintlab",
+    siteName: process.env.NEXT_PUBLIC_BRAND_NAME || "Tiny Compute",
+    twitterHandle: process.env.NEXT_PUBLIC_TWITTER_HANDLE || "@tinycompute",
     ogImage: "/og-image.png", // place a 1200×630 image in /public
   },
 } as const;
