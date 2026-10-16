@@ -1,8 +1,9 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
+import AudienceSpotlight from "@/components/AudienceSpotlight";
 import ServicesSection from "@/components/ServicesSection";
+import PricingSection from "@/components/PricingSection";
 import AboutSection from "@/components/AboutSection";
-import ConsultancySection from "@/components/ConsultancySection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import ScrollReveal from "@/components/ScrollReveal";
@@ -19,9 +20,10 @@ export default function Home() {
 
       <main id="main-content" tabIndex={-1}>
         <Hero />
+        <AudienceSpotlight />
         <ServicesSection />
+        <PricingSection />
         <AboutSection />
-        <ConsultancySection />
         <ContactSection />
       </main>
 

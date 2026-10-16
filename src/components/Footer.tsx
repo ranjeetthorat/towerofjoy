@@ -12,8 +12,8 @@ export default function Footer() {
             <p className="footer__brand-name">
               <span
                 style={{
-                  width: 7,
-                  height: 7,
+                  width: 8,
+                  height: 8,
                   borderRadius: "9999px",
                   background: "var(--color-accent)",
                   display: "inline-block",
@@ -27,9 +27,9 @@ export default function Footer() {
             <p className="footer__tagline">{siteConfig.tagline}</p>
           </div>
 
-          {/* Services col */}
+          {/* Solutions col */}
           <nav aria-label="Footer services navigation">
-            <p className="footer__col-title">Services</p>
+            <p className="footer__col-title">What I Build</p>
             <ul className="footer__col-links">
               {siteConfig.services.map((s) => (
                 <li key={s.id}>
@@ -41,9 +41,9 @@ export default function Footer() {
             </ul>
           </nav>
 
-          {/* Links col */}
+          {/* Quick Links col */}
           <nav aria-label="Footer quick links">
-            <p className="footer__col-title">Links</p>
+            <p className="footer__col-title">Quick Links</p>
             <ul className="footer__col-links">
               {siteConfig.navLinks.map((link) => (
                 <li key={link.href}>
@@ -60,7 +60,8 @@ export default function Footer() {
         <div className="footer__bottom">
           <div className="footer__meta">
             <p className="footer__copy">
-              &copy; {currentYear} {siteConfig.brandName}. All rights reserved.
+              &copy; {currentYear} {siteConfig.brandName}. Built with care for
+              Indian traders and business owners.
             </p>
             <p
               className="footer__build-info"
@@ -77,7 +78,19 @@ export default function Footer() {
               <span className="footer__commit-sha">{siteConfig.build.commitSha}</span>
             </p>
           </div>
+
           <div style={{ display: "flex", gap: "var(--space-4)" }}>
+            {siteConfig.socials.telegram && (
+              <a
+                href={siteConfig.socials.telegram}
+                className="footer__col-link"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Telegram contact"
+              >
+                Telegram
+              </a>
+            )}
             {siteConfig.socials.github && (
               <a
                 href={siteConfig.socials.github}
@@ -98,17 +111,6 @@ export default function Footer() {
                 aria-label="LinkedIn profile"
               >
                 LinkedIn
-              </a>
-            )}
-            {siteConfig.socials.telegram && (
-              <a
-                href={siteConfig.socials.telegram}
-                className="footer__col-link"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Telegram contact"
-              >
-                Telegram
               </a>
             )}
           </div>

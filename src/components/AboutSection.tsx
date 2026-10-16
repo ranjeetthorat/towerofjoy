@@ -1,13 +1,8 @@
 import { siteConfig } from "../../site.config";
 
-const stats = [
-  { value: "4+", label: "Service verticals" },
-  { value: "∞", label: "Scalable infrastructure" },
-  { value: "NSE", label: "Market coverage" },
-  { value: "24/7", label: "Monitoring & support" },
-];
-
 export default function AboutSection() {
+  const { about } = siteConfig;
+
   return (
     <section
       id="about"
@@ -16,31 +11,71 @@ export default function AboutSection() {
     >
       <div className="container">
         <div className="about__inner">
-          {/* Left – copy */}
+          {/* Left: Founder Story & Personal Promise */}
           <div className="about__content reveal">
             <p className="section-label">
-              <span aria-hidden="true">──</span> About
+              <span aria-hidden="true">──</span> About Me
             </p>
-            <div className="divider" aria-hidden="true" />
             <h2 id="about-title" className="about__headline">
-              {siteConfig.about.headline}
+              {about.headline}
             </h2>
-            <p className="about__body">{siteConfig.about.body}</p>
+            <div className="about__body">
+              {about.body.split("\n\n").map((paragraph, i) => (
+                <p key={i} style={{ marginBottom: "var(--space-4)" }}>
+                  {paragraph}
+                </p>
+              ))}
+            </div>
+
+            {/* Credibility Highlights */}
+            <div className="about__tags" aria-label="Key highlights">
+              {about.highlights.map((tag) => (
+                <span key={tag} className="about__tag">
+                  ✓ {tag}
+                </span>
+              ))}
+            </div>
           </div>
 
-          {/* Right – stats grid */}
-          <div
-            className="about__stats reveal"
-            aria-label="Quick statistics"
-          >
-            {stats.map((stat) => (
-              <div key={stat.label} className="about__stat">
-                <p className="about__stat-value" aria-label={stat.value}>
-                  {stat.value}
-                </p>
-                <p className="about__stat-label">{stat.label}</p>
-              </div>
-            ))}
+          {/* Right: The Direct Partnership Guarantee Card */}
+          <div className="about__card reveal">
+            <h3 className="about__card-title">
+              <span role="img" aria-label="handshake">
+                🤝
+              </span>
+              <span>My Commitment to You</span>
+            </h3>
+            <ul className="about__card-list">
+              {about.guarantees.map((item) => (
+                <li key={item} className="about__card-item">
+                  <span
+                    style={{
+                      color: "var(--color-accent)",
+                      fontWeight: "bold",
+                    }}
+                    aria-hidden="true"
+                  >
+                    •
+                  </span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+
+            <div style={{ marginTop: "var(--space-6)", paddingTop: "var(--space-4)", borderTop: "1px solid var(--color-border)" }}>
+              <p style={{ fontSize: "var(--text-xs)", color: "var(--color-text-faint)", marginBottom: "var(--space-3)" }}>
+                Have a question or want to verify if your idea is doable?
+              </p>
+              <a
+                href={siteConfig.socials.telegram}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn--secondary"
+                style={{ width: "100%", justifyContent: "center" }}
+              >
+                Send a voice note or message
+              </a>
+            </div>
           </div>
         </div>
       </div>
